@@ -29,5 +29,5 @@ EXPOSE 9091
 # PORTS_FROM_HOST 9091 9091
 # PORTS_FROM_HOST 9999 9999
 
-#VOLUME ["/data"]
-#CMD ["/start"]
+VOLUME ["/data"]
+CMD ["/start"]
