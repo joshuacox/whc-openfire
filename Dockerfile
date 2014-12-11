@@ -4,7 +4,7 @@ MAINTAINER Josh Cox "josh at webhosting coop"
 # ADD openfire_3.9.3_all.deb /tmp/
 #RUN cd /; wget -c http://www.igniterealtime.org/downloadServlet?filename=openfire/openfire_3.9.3_all.deb -O openfire_3.9.3_all.deb
 #RUN dpkg -i /openfire_3.9.3_all.deb
-#RUN chown -R openfire:openfire /etc/openfire /var/lib/openfire 
+#RUN chown -R openfire:openfire /etc/openfire /var/lib/openfire
 
 ADD docker.conf /etc/supervisor/conf.d/
 ADD start /start
