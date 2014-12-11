@@ -11,7 +11,7 @@ ADD start /start
 #ADD etc /etc/openfire
 RUN chmod 755 /start
 # NO_HTTP_PROXY
-# MOUNT_FROM_HOST /epxorts/whc-openfire/etc /etc/openfire
+# MOUNT_FROM_HOST /exports/whc-openfire/etc /etc/openfire
 # MOUNT_FROM_HOST /exports/whc-openfire/lib /var/lib/openfire
 # dontMOUNT_FROM_HOST /home/git/src/docker-openfire.git/lib /var/lib/openfire
 # PORTS_FROM_HOST 7777 7777
