@@ -10,6 +10,8 @@ PORTS := -p 0.0.0.0:5223:5223 $(PORTS)
 PORTS := -p 0.0.0.0:5229:5229 $(PORTS)
 PORTS := -p 0.0.0.0:7070:7070 $(PORTS)
 PORTS := -p 0.0.0.0:7443:7443 $(PORTS)
+MOUNTS= -v $(PWD)/etc/openfire:/etc/openfire
+MOUNTS := -v $(PWD)/lib/openfire:/var/lib/openfire $(MOUNTS)
 PWD = $(shell pwd)
 
 all: help
@@ -36,16 +38,16 @@ build-docker:
 	/usr/bin/time -v docker build -t $(DOCKER_TAG) .
 
 rund:
-	docker run $(DAEMON) $(PORTS) --name openfire -v $(PWD)/lib:/var/lib/openfire -v $(PWD)/etc:/etc/openfire --cidfile="cid" $(CONTAINER)
+	docker run $(DAEMON) $(PORTS) --name openfire $(MOUNTS) --cidfile="cid" $(CONTAINER)
 
 run:
-	docker run $(PORTS) --name openfire -v $(PWD)/lib:/var/lib/openfire -v $(PWD)/etc:/etc/openfire --cidfile="cid" $(CONTAINER)
+	docker run $(PORTS) --name openfire $(MOUNTS) --cidfile="cid" $(CONTAINER)
 
 runti:
-	docker run $(PORTS) -t -i --name openfire -v $(PWD)/lib:/var/lib/openfire -v $(PWD)/etc:/etc/openfire --cidfile="cid" $(CONTAINER)
+	docker run $(PORTS) -t -i --name openfire $(MOUNTS) --cidfile="cid" $(CONTAINER)
 
 runv:
-	docker run $(PORTS) --name openfire -v $(PWD)/lib:/var/lib/openfire --cidfile="cid" $(CONTAINER)
+	docker run $(PORTS) --name openfire $(MOUNTS) --cidfile="cid" $(CONTAINER)
 
 enter:
 	 docker exec -i -t `cat cid` /bin/bash

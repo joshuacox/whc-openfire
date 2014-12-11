@@ -1,23 +1,29 @@
 #!/bin/bash
 set -e
 
-chmod 775 /data
+/etc/init.d/openfire stop
 
-mkdir -p /data/openfire
-chown -R openfire:openfire /data/openfire
+#mkdir -p /data/openfire
+chmod 775 /etc/openfire
+chown -R openfire:openfire /etc/openfire
+chmod 775 /var/lib/openfire
+chown -R openfire:openfire /var/lib/openfire
 
+# this did not work for me I had to attach as volumes
 # populate default openfire configuration if it does not exist
-if [ ! -d /data/openfire/etc ]; then
-  mv /etc/openfire /data/openfire/etc
-fi
-rm -rf /etc/openfire
-ln -sf /data/openfire/etc /etc/openfire
+#if [ ! -d /data/openfire/etc ]; then
+  #mv /etc/openfire /data/openfire/etc
+#fi
+#rm -rf /etc/openfire
+#ln -sf /data/openfire/etc /etc/openfire
 
-if [ ! -d /data/openfire/lib ]; then
-  mv /var/lib/openfire /data/openfire/lib
-fi
-rm -rf /var/lib/openfire
-ln -sf /data/openfire/lib /var/lib/openfire
+#if [ ! -d /data/openfire/lib ]; then
+  #mv /var/lib/openfire /data/openfire/lib
+#fi
+#rm -rf /var/lib/openfire
+#ln -sf /data/openfire/lib /var/lib/openfire
+
+
 
 echo "Starting openfire..."
 exec sudo -u openfire -H /usr/bin/java \

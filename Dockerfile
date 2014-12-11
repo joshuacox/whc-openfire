@@ -15,8 +15,10 @@ EXPOSE 7777
 EXPOSE 9090
 EXPOSE 9091
 
+# Octo host magic variables
 # NO_HTTP_PROXY
-# MOUNT_FROM_HOST /exports/whc-openfire/data /etc/openfire
+# MOUNT_FROM_HOST /exports/whc-openfire/etc/openfire /etc/openfire
+# MOUNT_FROM_HOST /exports/whc-openfire/lib/openfire /var/lib/openfire
 # PORTS_FROM_HOST 3478 3478
 # PORTS_FROM_HOST 3479 3479
 # PORTS_FROM_HOST 5222 5222
@@ -28,6 +30,8 @@ EXPOSE 9091
 # PORTS_FROM_HOST 9090 9090
 # PORTS_FROM_HOST 9091 9091
 # PORTS_FROM_HOST 9999 9999
+# End Octo magic variables
 
-VOLUME ["/data"]
+VOLUME ["/etc/openfire"]
+VOLUME ["/var/lib/openfire"]
 CMD ["/start"]
