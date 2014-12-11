@@ -4,9 +4,18 @@ CONTAINER=openfire
 DAEMON=-d
 # File sharing proxy port
 PORTS=-p 0.0.0.0:7777:7777 -p 0.0.0.0:5222:5222 -p 0.0.0.0:9090:9090 -p 0.0.0.0:9091:9091 -p 0.0.0.0:5269:5269 -p 0.0.0.0:9999:9999
+PORTS := -p 0.0.0.0:3478:3478 $(PORTS)
+PORTS := -p 0.0.0.0:3479:3479 $(PORTS)
+PORTS := -p 0.0.0.0:5223:5223 $(PORTS)
+PORTS := -p 0.0.0.0:5229:5229 $(PORTS)
+PORTS := -p 0.0.0.0:7070:7070 $(PORTS)
+PORTS := -p 0.0.0.0:7443:7443 $(PORTS)
 PWD = $(shell pwd)
 
 all: help
+
+echo:
+	echo $(PORTS)
 
 help:
 	@echo ""
